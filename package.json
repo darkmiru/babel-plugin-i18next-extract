@@ -71,6 +71,7 @@
     "lint": "eslint --ext=.ts,.js,.tsx,.jsx src docs tests rollup.config.js",
     "types": "tsc --noEmit",
     "build": "${npm_execpath} run build:clean && ${npm_execpath} run build:types && ${npm_execpath} run build:js",
+    "build2": "npm run build:clean && npm run build:types && npm run build:js",
     "build:clean": "rimraf lib/",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "rollup -c",

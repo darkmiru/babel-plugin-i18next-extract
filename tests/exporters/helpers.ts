@@ -12,6 +12,7 @@ export function createSimpleKey(
     isDerivedKey: false,
     parsedOptions: {
       contexts: false,
+      userkeys: false,
       hasCount: false,
       ns: null,
       defaultValue: null,
