@@ -32,7 +32,7 @@ interface TestData {
  * Yields TestData for each test.
  */
 function* genTestData(): IterableIterator<TestData> {
-  const fixturesDir = path.join(__dirname, '__fixtures__');
+  const fixturesDir = path.join(__dirname, '__fixtures2__');
 
   // List directories in __fixtures__
   const testDirsEnt = fs

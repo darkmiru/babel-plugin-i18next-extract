@@ -8,6 +8,7 @@ interface I18NextParsedOptions {
   // If contexts is true, default context should be used.
   // If contexts is false, context are disable.
   contexts: string[] | boolean;
+  userkeys: string[] | boolean;
   hasCount: boolean;
   ns: string | null;
   defaultValue: string | null;

@@ -1,7 +1,7 @@
 import * as BabelTypes from '@babel/types';
 import * as BabelCore from '@babel/core';
 
-type CommentHintType = 'DISABLE' | 'NAMESPACE' | 'CONTEXT' | 'PLURAL';
+type CommentHintType = 'DISABLE' | 'NAMESPACE' | 'CONTEXT' | 'PLURAL' | 'USERKEY';
 type CommentHintScope =
   | 'LINE'
   | 'NEXT_LINE'
@@ -58,6 +58,12 @@ export const COMMENT_HINTS_KEYWORDS: {
     NEXT_LINE: COMMENT_HINT_PREFIX + 'mark-plural-next-line',
     SECTION_START: COMMENT_HINT_PREFIX + 'mark-plural-start',
     SECTION_STOP: COMMENT_HINT_PREFIX + 'mark-plural-stop',
+  },
+  USERKEY: {
+    LINE: COMMENT_HINT_PREFIX + 'user-key',
+    NEXT_LINE: COMMENT_HINT_PREFIX + 'user-key-next-line',
+    SECTION_START: COMMENT_HINT_PREFIX + 'user-key-start',
+    SECTION_STOP: COMMENT_HINT_PREFIX + 'user-key-stop',
   },
 };
 
@@ -174,12 +180,15 @@ export function getCommentHintForPath(
   if (!path.node.loc) return null;
   const nodeLine = path.node.loc.start.line;
 
+  console.log(' -- nodeLine -- ', nodeLine);
+
   for (const commentHint of commentHints) {
     if (
       commentHint.type === commentHintType &&
       commentHint.startLine <= nodeLine &&
       nodeLine <= commentHint.stopLine
     ) {
+      console.log(' -- commentHint -- ', commentHint);
       return commentHint;
     }
   }

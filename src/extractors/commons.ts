@@ -48,6 +48,11 @@ export function parseI18NextOptionsFromCommentHints(
     'PLURAL',
     commentHints,
   );
+  const userkeyCommentHint = getCommentHintForPath(
+    path,
+    'USERKEY',
+    commentHints,
+  );
   const res: Partial<ExtractedKey['parsedOptions']> = {};
 
   if (nsCommentHint !== null) {
@@ -73,6 +78,21 @@ export function parseI18NextOptionsFromCommentHints(
       res.hasCount = false;
     } else {
       res.hasCount = true;
+    }
+  }
+  if (userkeyCommentHint !== null) {
+    if (['', 'enable'].includes(userkeyCommentHint.value)) {
+      res.contexts = true;
+    } else if (userkeyCommentHint.value === 'disable') {
+      res.contexts = false;
+    } else {
+      try {
+        const val = JSON.parse(userkeyCommentHint.value);
+        if (Array.isArray(val)) res.userkeys = val;
+        else res.userkeys = [userkeyCommentHint.value];
+      } catch (err) {
+        res.userkeys = [userkeyCommentHint.value];
+      }
     }
   }
   return res;

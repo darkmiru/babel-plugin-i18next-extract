@@ -103,7 +103,7 @@ function extractTCall(
     );
   }
 
-  return {
+  let ret = {
     key: keyEvaluation,
     parsedOptions: {
       ...parseTCallOptions(args[1]),
@@ -112,6 +112,8 @@ function extractTCall(
     sourceNodes: [path.node],
     extractorName: extractTFunction.name,
   };
+
+  return ret;
 }
 
 /**

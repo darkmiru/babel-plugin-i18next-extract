@@ -6,6 +6,7 @@ import extractGetFixedTFunction from './getFixedTFunction';
 import extractTranslationRenderProp from './translationRenderProp';
 import extractI18nextInstance from './i18nextInstance';
 import extractTFunction from './tFunction';
+import extractUserKey from './userkey';
 import { ExtractionError } from './commons';
 
 export { ExtractionError };
@@ -22,6 +23,7 @@ export const EXTRACTORS_PRIORITIES = [
   extractWithTranslationHOC.name,
   extractI18nextInstance.name,
   extractTFunction.name,
+  extractUserKey.name
 ];
 
 export default {
@@ -33,4 +35,5 @@ export default {
   extractWithTranslationHOC,
   extractI18nextInstance,
   extractTFunction,
+  extractUserKey
 };
