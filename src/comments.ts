@@ -180,15 +180,12 @@ export function getCommentHintForPath(
   if (!path.node.loc) return null;
   const nodeLine = path.node.loc.start.line;
 
-  console.log(' -- nodeLine -- ', nodeLine);
-
   for (const commentHint of commentHints) {
     if (
       commentHint.type === commentHintType &&
       commentHint.startLine <= nodeLine &&
       nodeLine <= commentHint.stopLine
     ) {
-      console.log(' -- commentHint -- ', commentHint);
       return commentHint;
     }
   }

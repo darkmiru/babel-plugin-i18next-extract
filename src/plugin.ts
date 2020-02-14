@@ -105,6 +105,7 @@ function handleExtraction<T>(
 const Visitor: BabelCore.Visitor<VisitorState> = {
   CallExpression(path, state: VisitorState) {
     const extractState = this.I18NextExtract;
+
     handleExtraction(path, state, collect => {
       collect(
         Extractors.extractUseTranslationHook(
@@ -134,6 +135,13 @@ const Visitor: BabelCore.Visitor<VisitorState> = {
           extractState.commentHints,
         ),
       );
+    });
+  },
+
+  ObjectProperty(path, state: VisitorState) {
+    const extractState = this.I18NextExtract;
+    
+    handleExtraction(path, state, collect => {
       collect(
         Extractors.extractUserKey(
           path,
@@ -251,6 +259,7 @@ export default function(
             path.container.comments,
           );
         }
+        debugger
         path.traverse(Visitor, state);
       },
     },

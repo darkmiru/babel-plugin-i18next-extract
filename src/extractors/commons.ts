@@ -82,9 +82,9 @@ export function parseI18NextOptionsFromCommentHints(
   }
   if (userkeyCommentHint !== null) {
     if (['', 'enable'].includes(userkeyCommentHint.value)) {
-      res.contexts = true;
+      res.userkeys = true;
     } else if (userkeyCommentHint.value === 'disable') {
-      res.contexts = false;
+      res.userkeys = false;
     } else {
       try {
         const val = JSON.parse(userkeyCommentHint.value);
